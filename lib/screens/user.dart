@@ -14,6 +14,14 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  final TextEditingController _addressTextController =
+      TextEditingController(text: "");
+  @override
+  void dispose() {
+    _addressTextController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
@@ -67,7 +75,9 @@ class _UserScreenState extends State<UserScreen> {
                   title: 'Address',
                   subtitle: 'Subtitle here',
                   icon: IconlyLight.profile,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _showAddressDialog();
+                  },
                   color: color,
                 ),
                 _listTitles(
@@ -114,7 +124,9 @@ class _UserScreenState extends State<UserScreen> {
                 _listTitles(
                   title: 'Logout',
                   icon: IconlyLight.logout,
-                  onPressed: () {},
+                  onPressed: () {
+                    _showLogoutDialog();
+                  },
                   color: color,
                 ),
               ],
@@ -123,6 +135,74 @@ class _UserScreenState extends State<UserScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _showLogoutDialog() async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Row(children: [
+              Image.asset(
+                "assets/images/warning-sign.png",
+                height: 20,
+                width: 20,
+                fit: BoxFit.fill,
+              ),
+              const SizedBox(width: 8),
+              const Text('Sign out')
+            ]),
+            content: const Text('Do you wanna sign out?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  }
+                },
+                child: TextWidget(
+                  color: Colors.cyan,
+                  text: 'Cancel',
+                  textSize: 18,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: TextWidget(
+                  color: Colors.red,
+                  text: 'OK',
+                  textSize: 18,
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
+  Future<void> _showAddressDialog() async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Update'),
+            content: TextField(
+              //onChanged: (value) {
+              //  //_addressTextController.text;
+              //  print(
+              //      "_addressTextController.text ${_addressTextController.text}");
+              //},
+              controller: _addressTextController,
+              maxLines: 5,
+              decoration: const InputDecoration(hintText: "Your address"),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {},
+                child: const Text('Update'),
+              ),
+            ],
+          );
+        });
   }
 
   Widget _listTitles({
