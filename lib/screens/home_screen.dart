@@ -1,11 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:fruits_app/inner_screens/on_sale_screen.dart';
 import 'package:fruits_app/provider/dark_theme_provider.dart';
 import 'package:fruits_app/services/utils.dart';
 import 'package:fruits_app/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../services/global_methods.dart';
 import '../widgets/feed_items.dart';
 import '../widgets/on_sale_widget.dart';
 
@@ -30,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final themeState = utils.getTheme;
     final Color color = Utils(context).color;
     Size size = utils.getScreenSize;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -56,7 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 6,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                GlobalMethods.navigateTo(
+                    ctx: context, routeName: OnSaleScreen.routeName);
+              },
               child: TextWidget(
                 text: 'View all',
                 maxLines: 1,
