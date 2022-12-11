@@ -69,8 +69,16 @@ class _FeedsWidgetState extends State<FeedsWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const PriceWidget(),
-                  const SizedBox(width: 30),
+                  Flexible(
+                    flex: 3,
+                    child: PriceWidget(
+                      salePrice: 2.99,
+                      price: 5.9,
+                      textPrice: _quantityTextController.text,
+                      isOnSale: true,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
                   Flexible(
                     child: Row(
                       children: [
@@ -84,19 +92,23 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                         ),
                         const SizedBox(width: 5),
                         Flexible(
+                            flex: 2,
                             child: TextFormField(
-                          controller: _quantityTextController,
-                          key: const ValueKey('10'),
-                          style: TextStyle(color: color, fontSize: 18),
-                          keyboardType: TextInputType.number,
-                          maxLines: 1,
-                          enabled: true,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                              RegExp('[0-9.]'),
-                            ),
-                          ],
-                        ))
+                              controller: _quantityTextController,
+                              key: const ValueKey('10'),
+                              style: TextStyle(color: color, fontSize: 18),
+                              keyboardType: TextInputType.number,
+                              maxLines: 1,
+                              enabled: true,
+                              onChanged: (valueee) {
+                                setState(() {});
+                              },
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                  RegExp('[0-9.]'),
+                                ),
+                              ],
+                            ))
                       ],
                     ),
                   )
