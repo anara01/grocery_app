@@ -124,7 +124,7 @@ class _CartWidgetState extends State<CartWidget> {
                           child: const Icon(
                             CupertinoIcons.cart_badge_minus,
                             color: Colors.red,
-                            size: 20,
+                            size: 25,
                           ),
                         ),
                         const SizedBox(
