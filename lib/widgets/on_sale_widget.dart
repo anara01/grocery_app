@@ -39,8 +39,8 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                     children: [
                       FancyShimmerImage(
                         imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
-                        height: size.width * 0.22,
-                        width: size.width * 0.22,
+                        height: size.width * 0.24,
+                        width: size.width * 0.24,
                         boxFit: BoxFit.fill,
                       ),
                       Column(
@@ -83,12 +83,10 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                   TextWidget(
                     text: 'Product title',
                     color: color,
-                    textSize: 16,
+                    textSize: 18,
                     isTitle: true,
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                 ]),
           ),
         ),

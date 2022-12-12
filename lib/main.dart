@@ -6,6 +6,7 @@ import 'package:fruits_app/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'consts/theme_data.dart';
+import 'inner_screens/feeds_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,6 +50,7 @@ class _MyAppState extends State<MyApp> {
           home: const BottomBarScreen(),
           routes: {
             OnSaleScreen.routeName: (ctx) => const OnSaleScreen(),
+            FeedsScreen.routeName: (ctx) => const FeedsScreen(),
           },
         );
       }),
